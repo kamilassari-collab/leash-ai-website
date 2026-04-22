@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Leash AI — L'IA vétérinaire qui libère votre temps</title>
+<title>VetaIA — L'IA vétérinaire qui libère votre temps</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet" />
@@ -266,6 +266,53 @@ nav {
 .int-status { font-size:.62em; color:var(--ink-3); margin-top:1px; }
 .int-dot { width:6px; height:6px; border-radius:50%; background:var(--border); flex-shrink:0; margin-left:auto; }
 
+/* ── STATS ── */
+.stats-wrap {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: white;
+}
+.stats-grid {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 0 var(--pad-h);
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.stat-cell {
+  padding: 3.5em 2.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-family: 'Newsreader', serif;
+  font-size: 3.75em;
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--brand);
+  display: flex;
+  align-items: baseline;
+  gap: 0.08em;
+}
+.stat-unit {
+  font-size: 0.55em;
+  font-weight: 400;
+  color: var(--brand);
+  letter-spacing: -0.02em;
+}
+.stat-desc {
+  font-size: 0.8em;
+  color: var(--ink-3);
+  line-height: 1.55;
+  max-width: 13em;
+  letter-spacing: -0.01em;
+}
+
 /* ── TESTIMONIALS ── */
 .dark-section { background:var(--surface-2); padding:var(--sp-xl) var(--pad-h); border-top:1px solid var(--border); }
 .dark-inner { max-width:var(--max-w); margin:0 auto; }
@@ -330,6 +377,125 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
 .f-badge { display:inline-flex; align-items:center; gap:.35em; padding:.28em .75em; border-radius:100em; font-size:.68em; font-weight:600; }
 .f-badge-teal { background:rgba(11,122,106,.14); border:1px solid rgba(11,122,106,.2); color:#2DD4C0; }
 .f-badge-dim  { background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:rgba(255,255,255,.24); }
+
+/* ── HAMBURGER ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: .5em;
+  border-radius: var(--r-s);
+  margin-left: .5em;
+  flex-shrink: 0;
+}
+.nav-hamburger span {
+  display: block;
+  width: 20px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform var(--dur-s) var(--ease), opacity var(--dur-s) var(--ease);
+}
+.nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav-link-mob { display: none; }
+
+/* ── RESPONSIVE MOBILE ── */
+@media (max-width: 860px) {
+  html { font-size: 15px; }
+  :root {
+    --pad-h: 1.25rem;
+    --sp-xl: 4rem;
+    --sp-l: 3rem;
+    --sp-m: 2rem;
+  }
+
+  /* Nav */
+  .nav-inner { gap: 0; }
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 4.8em;
+    left: 0; right: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: .75rem 1.25rem 1rem;
+    flex-direction: column;
+    gap: .15em;
+    z-index: 99;
+    box-shadow: 0 8px 24px rgba(20,20,20,.08);
+    animation: in .25s var(--ease) both;
+  }
+  .nav-links.mobile-open { display: flex; }
+  .nav-link { font-size: .95em; padding: .7em .75em; }
+  .nav-hamburger { display: flex; }
+  .btn-ghost { display: none; }
+  .nav-link-mob { display: block; }
+
+  /* Hero */
+  .hero { grid-template-columns: 1fr; padding: 2.5rem 1.25rem 2rem; gap: 2rem; }
+  .hero-h1 { font-size: 2.75em; }
+  .hero-sub { font-size: 1em; max-width: none; margin-bottom: 1.75rem; }
+  .hero-actions { flex-wrap: wrap; gap: .75em; margin-bottom: 1.75em; }
+  .hero-trust { flex-wrap: wrap; gap: .5em; }
+
+  /* Value section */
+  .value-top { grid-template-columns: 1fr; gap: 1.75em; margin-bottom: 2.5em; }
+  .value-headline { font-size: 2.25em; }
+  .value-desc { font-size: 1em; margin-bottom: 1.5em; }
+  .feat-duo { grid-template-columns: 1fr; }
+  .feat-duo-ui { min-height: 180px; }
+
+  /* How it works */
+  .step-cards { grid-template-columns: 1fr; gap: 1em; }
+  .step-card { text-align: left; padding: 1.75em 1.5em; }
+  .step-deco { margin: 0 0 1.25em; }
+
+  /* Stats */
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .stat-cell { padding: 2em 1.25em; border-right: none; border-bottom: 1px solid var(--border); }
+  .stat-cell:nth-child(odd) { border-right: 1px solid var(--border); }
+  .stat-cell:last-child { border-bottom: none; }
+  .stat-num { font-size: 2.75em; }
+
+  /* Testimonials */
+  .dark-h2 { font-size: 2.25em; }
+  .testi-grid { grid-template-columns: 1fr; gap: .75em; }
+
+  /* FAQ */
+  .sh2 { font-size: 2em; }
+
+  /* CTA */
+  .cta-box { padding: 3.5rem 1.5rem; border-radius: var(--r-xl); }
+  .cta-h2 { font-size: 2.25em; }
+  .cta-sub { max-width: none; }
+  .cta-actions { flex-direction: column; align-items: center; }
+  .btn-white, .btn-outline-w { width: 100%; justify-content: center; max-width: 300px; }
+
+  /* Footer */
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 2em; padding: 3rem 1.25rem 2rem; }
+  .footer-bottom { flex-direction: column; align-items: center; text-align: center; gap: .5em; }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  :root { --pad-h: 1rem; }
+  .hero-h1 { font-size: 2.35em; }
+  .value-headline { font-size: 2em; }
+  .dark-h2 { font-size: 2em; }
+  .cta-h2 { font-size: 2em; }
+  .stats-grid { grid-template-columns: 1fr; }
+  .stat-cell { border-right: none !important; border-bottom: 1px solid var(--border); }
+  .stat-cell:last-child { border-bottom: none; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .marquee-lbl { display: none; }
+  .marquee-sep { display: none; }
+}
 </style>
 </head>
 <body>
@@ -337,25 +503,29 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-inner">
-    <a href="/" class="nav-logo" aria-label="Leash AI">
-      <svg width="90" height="27" viewBox="0 0 320 100" fill="none">
+    <a href="/" class="nav-logo" aria-label="VetaIA">
+      <svg width="124" height="37" viewBox="0 0 320 100" fill="none">
         <path d="M0 32L32 0v64L0 64z" fill="#0B7A6A"/>
         <path d="M32 0h32v32L32 64V32z" fill="#141414"/>
-        <text x="80" y="70" font-family="Geist,system-ui,sans-serif" font-size="54" font-weight="600" fill="#141414" letter-spacing="-2">Leash</text>
-        <text x="248" y="70" font-family="Geist,system-ui,sans-serif" font-size="54" font-weight="600" fill="#0B7A6A" letter-spacing="-2">AI</text>
+        <text x="82" y="58" font-family="Geist,system-ui,sans-serif" font-size="50" font-weight="700" fill="#141414" letter-spacing="-2">Veta</text>
+        <text x="190" y="58" font-family="Geist,system-ui,sans-serif" font-size="50" font-weight="700" fill="#0B7A6A" letter-spacing="-2">IA</text>
       </svg>
     </a>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="#fonctionnalites" class="nav-link">Fonctionnalités</a>
       <a href="#comment-ca-marche" class="nav-link">Comment ça marche</a>
       <a href="#temoignages" class="nav-link">Témoignages</a>
+      <a href="#" class="nav-link nav-link-mob">Connexion</a>
     </div>
     <div class="nav-actions">
       <a href="#" class="btn-ghost">Connexion</a>
-      <a href="#" class="btn-primary">
+      <a href="/signup" class="btn-primary">
         Accès gratuit
         <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5h7M6 2.5l3.5 3L6 8.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
+      <button class="nav-hamburger" id="nav-hamburger" onclick="toggleNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -367,12 +537,13 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
     <div class="hero-content">
       <div class="hero-badge"><span class="hero-dot"></span>Bêta ouverte · Accès gratuit</div>
       <h1 class="hero-h1">Vos rapports SOAP,<br><em>rédigés en dictant.</em></h1>
-      <p class="hero-sub">Dictez pendant la consultation. Leash AI génère le compte-rendu SOAP structuré en 30 secondes. Un assistant clinique répond à vos questions de dosage en temps réel.</p>
+      <p class="hero-sub">Dictez pendant la consultation. VetaIA génère le compte-rendu SOAP structuré en 30 secondes. Un assistant clinique répond à vos questions de dosage en temps réel.</p>
       <div class="hero-actions">
-        <a href="#" class="btn-lg">
+        <a href="/signup" class="btn-lg">
           Commencer gratuitement
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7.5 3l4 3.5-4 3.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
+        <p style="margin:10px 0 0;font-size:.8em;color:rgba(255,255,255,.5);">Déjà un compte ? <a href="/login" style="color:rgba(255,255,255,.75);text-decoration:underline;">Se connecter</a></p>
         <a href="https://calendly.com/kamilassari/30min" class="btn-text" target="_blank">
           Voir une démo →
         </a>
@@ -486,8 +657,8 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
         Deux outils.<br>Un seul objectif :<br><em>vous libérer du temps.</em>
       </h2>
       <div class="value-right">
-        <p class="value-desc">Chaque heure passée sur les dossiers est une heure prise sur vos patients. Leash AI prend en charge la rédaction des comptes-rendus et répond à vos questions cliniques en temps réel.</p>
-        <a href="#" class="btn-lg">
+        <p class="value-desc">Chaque heure passée sur les dossiers est une heure prise sur vos patients. VetaIA prend en charge la rédaction des comptes-rendus et répond à vos questions cliniques en temps réel.</p>
+        <a href="/signup" class="btn-lg">
           Commencer gratuitement
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2.5 6.5h8M7.5 3l4 3.5-4 3.5" stroke="white" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
@@ -503,7 +674,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
         <div class="feat-duo-text">
           <div class="feat-duo-eyebrow">Dictée & Transcription</div>
           <div class="feat-duo-title">Fini la rédaction.<br><em>Pour toujours.</em></div>
-          <p class="feat-duo-desc">Vous parlez, Leash AI rédige. Le compte-rendu SOAP est prêt en 30 secondes, sans que vous ayez touché au clavier.</p>
+          <p class="feat-duo-desc">Vous parlez, VetaIA rédige. Le compte-rendu SOAP est prêt en 30 secondes, sans que vous ayez touché au clavier.</p>
         </div>
         <div class="feat-duo-ui">
           <!-- Mini dictation → SOAP mockup -->
@@ -595,7 +766,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
     <div class="how-head">
       <div class="overline">En pratique</div>
       <h2 class="sh2">De l'enregistrement<br>au rapport, <em>en 30 secondes.</em></h2>
-      <p class="ssub">Voici exactement ce qui se passe quand vous utilisez Leash AI en consultation.</p>
+      <p class="ssub">Voici exactement ce qui se passe quand vous utilisez VetaIA en consultation.</p>
     </div>
     <div class="step-cards">
       <!-- Card 1 -->
@@ -606,7 +777,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
         </div>
         <div class="step-badge">Étape 01</div>
         <div class="step-card-title">Enregistrez pendant la consultation</div>
-        <p class="step-card-desc">Lancez l'enregistrement avant de faire entrer le patient. Parlez normalement. Leash AI transcrit en temps réel, termes latins et doses compris.</p>
+        <p class="step-card-desc">Lancez l'enregistrement avant de faire entrer le patient. Parlez normalement. VetaIA transcrit en temps réel, termes latins et doses compris.</p>
       </div>
 
       <!-- Card 2 -->
@@ -644,7 +815,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
         Témoignages
       </div>
       <h2 class="dark-h2">Ils ont arrêté de rédiger <em>leurs rapports eux-mêmes.</em></h2>
-      <p class="dark-sub">Ils font partie des premières cliniques à tester Leash AI pendant la bêta.</p>
+      <p class="dark-sub">Ils font partie des premières cliniques à tester VetaIA pendant la bêta.</p>
     </div>
     <div class="testi-grid">
       <div class="testi-card">
@@ -657,7 +828,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
       </div>
       <div class="testi-card">
         <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">"En chirurgie on perd beaucoup de temps à dicter les comptes-rendus post-op. Avec Leash AI, <strong>je parle et le rapport est structuré en trente secondes.</strong> Bluffant."</p>
+        <p class="testi-quote">"En chirurgie on perd beaucoup de temps à dicter les comptes-rendus post-op. Avec VetaIA, <strong>je parle et le rapport est structuré en trente secondes.</strong> Bluffant."</p>
         <div class="testi-author">
           <div class="testi-avatar" style="background:linear-gradient(135deg,#1A1A2E,#16213E);">AM</div>
           <div><div class="testi-name">Dr. Antoine Mercier</div><div class="testi-role">Chirurgien vétérinaire · Paris</div></div>
@@ -692,7 +863,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
       <div class="faq-q"><span class="faq-question">L'IA remplace-t-elle mon jugement clinique ?</span><div class="faq-icon">+</div></div>
-      <div class="faq-answer"><p>Non. Leash AI est un outil d'aide à la décision réservé aux vétérinaires diplômés. Il vous fait gagner du temps sur l'administratif. Le diagnostic reste votre expertise.</p></div>
+      <div class="faq-answer"><p>Non. VetaIA est un outil d'aide à la décision réservé aux vétérinaires diplômés. Il vous fait gagner du temps sur l'administratif. Le diagnostic reste votre expertise.</p></div>
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
       <div class="faq-q"><span class="faq-question">Quand les intégrations logicielles seront-elles disponibles ?</span><div class="faq-icon">+</div></div>
@@ -700,7 +871,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
     </div>
     <div class="faq-item" onclick="toggleFaq(this)">
       <div class="faq-q"><span class="faq-question">Y a-t-il une période d'essai gratuite ?</span><div class="faq-icon">+</div></div>
-      <div class="faq-answer"><p>Oui. Pendant la bêta, Leash AI est entièrement gratuit, sans limite de consultations. Accès immédiat après inscription.</p></div>
+      <div class="faq-answer"><p>Oui. Pendant la bêta, VetaIA est entièrement gratuit, sans limite de consultations. Accès immédiat après inscription.</p></div>
     </div>
   </div>
 </div>
@@ -710,9 +881,9 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
   <div class="cta-box">
     <div class="cta-overline">Accès anticipé gratuit</div>
     <h2 class="cta-h2">Concentrez-vous sur <em>l'animal.</em></h2>
-    <p class="cta-sub">Rejoignez les premières cliniques à tester Leash AI. Accès complet pendant la bêta, sans engagement.</p>
+    <p class="cta-sub">Rejoignez les premières cliniques à tester VetaIA. Accès complet pendant la bêta, sans engagement.</p>
     <div class="cta-actions">
-      <a href="#" class="btn-white">
+      <a href="/signup" class="btn-white">
         Commencer maintenant
         <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 6h7M6.5 2.5l4 3.5-4 3.5" stroke="#0B7A6A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
@@ -725,11 +896,11 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
 <footer>
   <div class="footer-inner">
     <div>
-      <svg width="84" height="25" viewBox="0 0 320 100" fill="none" aria-label="Leash AI">
+      <svg width="114" height="34" viewBox="0 0 320 100" fill="none" aria-label="VetaIA">
         <path d="M0 32L32 0v64L0 64z" fill="#0D9C87"/>
         <path d="M32 0h32v32L32 64V32z" fill="white"/>
-        <text x="80" y="70" font-family="Geist,system-ui,sans-serif" font-size="54" font-weight="600" fill="white" letter-spacing="-2">Leash</text>
-        <text x="248" y="70" font-family="Geist,system-ui,sans-serif" font-size="54" font-weight="600" fill="#2DD4C0" letter-spacing="-2">AI</text>
+        <text x="82" y="58" font-family="Geist,system-ui,sans-serif" font-size="50" font-weight="700" fill="white" letter-spacing="-2">Veta</text>
+        <text x="190" y="58" font-family="Geist,system-ui,sans-serif" font-size="50" font-weight="700" fill="#2DD4C0" letter-spacing="-2">IA</text>
       </svg>
       <p class="footer-desc">Assistant clinique IA conçu exclusivement pour les vétérinaires diplômés. Données hébergées en Europe.</p>
       <div style="display:flex;gap:.5em;margin-top:1em;flex-wrap:wrap;">
@@ -761,7 +932,7 @@ footer { background:var(--ink); border-top:1px solid rgba(255,255,255,.05); }
     </div>
   </div>
   <div class="footer-bottom">
-    <p>© 2026 Leash AI · Tous droits réservés</p>
+    <p>© 2026 VetaIA · Tous droits réservés</p>
     <p>Outil réservé aux professionnels de santé animale</p>
   </div>
 </footer>
@@ -772,6 +943,20 @@ function toggleFaq(item) {
   document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
   if (!isOpen) item.classList.add('open');
 }
+
+function toggleNav() {
+  const links = document.getElementById('nav-links');
+  const btn = document.getElementById('nav-hamburger');
+  links.classList.toggle('mobile-open');
+  btn.classList.toggle('open');
+}
+
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    document.getElementById('nav-links').classList.remove('mobile-open');
+    document.getElementById('nav-hamburger').classList.remove('open');
+  });
+});
 </script>
 </body>
 </html>
